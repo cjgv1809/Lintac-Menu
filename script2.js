@@ -6,36 +6,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
     parentItem.addEventListener("mouseenter", () => {
       firstLevelMenu.style.visibility = "visible"; // Show the menu
-      firstLevelMenu.animate(
-        [
-          { opacity: 0, transform: "translateX(100%)" },
-          { opacity: 1, transform: "translateX(0)" },
-        ],
-        {
-          duration: 500,
-          fill: "forwards",
-          easing: "ease-out",
-        }
-      );
-    });
-
-    parentItem.addEventListener("mouseleave", (e) => {
-      const relatedTarget = e.relatedTarget || e.toElement;
-
-      if (!parentItem.contains(relatedTarget)) {
+      if (firstLevelMenu) {
         firstLevelMenu.animate(
           [
-            { opacity: 1, transform: "translateX(0)" },
             { opacity: 0, transform: "translateX(100%)" },
+            { opacity: 1, transform: "translateX(0)" },
           ],
           {
             duration: 500,
             fill: "forwards",
             easing: "ease-out",
           }
-        ).onfinish = () => {
-          firstLevelMenu.style.visibility = "hidden"; // Hide the menu after animation
-        };
+        );
+      }
+    });
+
+    parentItem.addEventListener("mouseleave", (e) => {
+      const relatedTarget = e.relatedTarget || e.toElement;
+
+      if (!parentItem.contains(relatedTarget)) {
+        if (firstLevelMenu) {
+          firstLevelMenu.animate(
+            [
+              { opacity: 1, transform: "translateX(0)" },
+              { opacity: 0, transform: "translateX(100%)" },
+            ],
+            {
+              duration: 500,
+              fill: "forwards",
+              easing: "ease-out",
+            }
+          ).onfinish = () => {
+            firstLevelMenu.style.visibility = "hidden"; // Hide the menu after animation
+          };
+        }
       }
     });
 
@@ -63,19 +67,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const relatedTarget = e.relatedTarget || e.toElement;
 
         if (!item.contains(relatedTarget)) {
-          secondLevelMenu.animate(
-            [
-              { opacity: 1, transform: "translateX(0)" },
-              { opacity: 0, transform: "translateX(100%)" },
-            ],
-            {
-              duration: 500,
-              fill: "forwards",
-              easing: "ease-out",
-            }
-          ).onfinish = () => {
-            secondLevelMenu.style.visibility = "hidden"; // Hide the menu after animation
-          };
+          if (secondLevelMenu) {
+            secondLevelMenu.animate(
+              [
+                { opacity: 1, transform: "translateX(0)" },
+                { opacity: 0, transform: "translateX(100%)" },
+              ],
+              {
+                duration: 500,
+                fill: "forwards",
+                easing: "ease-out",
+              }
+            ).onfinish = () => {
+              secondLevelMenu.style.visibility = "hidden"; // Hide the menu after animation
+            };
+          }
         }
       });
     });

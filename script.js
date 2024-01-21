@@ -1,135 +1,91 @@
 document.addEventListener("DOMContentLoaded", function () {
   const menuItems = [
-    {
-      menuItem: document.querySelector("#nuestro-adn"),
-      submenu: document.querySelector("#nuestro-adn-submenu"),
-    },
-    {
-      menuItem: document.querySelector("#la-vida-en-lintac"),
-      submenu: document.querySelector("#vida-lintac-submenu"),
-    },
-    {
-      menuItem: document.querySelector("#proyecto-educativo"),
-      submenu: document.querySelector("#proyecto-educativo-submenu"),
-    },
-    {
-      menuItem: document.querySelector("#formacion-valorica"),
-      submenu: document.querySelector("#formacion-valorica-submenu"),
-    },
-    {
-      menuItem: document.querySelector("#cv-internacionales"),
-      submenu: document.querySelector("#cv-internacionales-submenu"),
-    },
-    {
-      menuItem: document.querySelector("#diversidad"),
-      submenu: document.querySelector("#diversidad-submenu"),
-    },
-    {
-      menuItem: document.querySelector("#zona-alumnos"),
-      submenu: document.querySelector("#zona-alumnos-submenu"),
-    },
-    {
-      menuItem: document.querySelector("#herramientas-vida-escolar"),
-      submenu: document.querySelector("#herramientas-vida-escolar-submenu"),
-    },
-    { menuItem: document.querySelector("#talleres"), submenu: null },
-    {
-      menuItem: document.querySelector("#deportes"),
-      submenu: document.querySelector("#deportes-submenu"),
-    },
-    { menuItem: document.querySelector("#reglamento"), submenu: null },
-    { menuItem: document.querySelector("#sedes"), submenu: null },
-    { menuItem: document.querySelector("#noticias"), submenu: null },
-    {
-      menuItem: document.querySelector("#comunidad"),
-      submenu: document.querySelector("#comunidad-submenu"),
-    },
+    "nuestro-adn",
+    "la-vida-en-lintac",
+    "proyecto-educativo",
+    "formacion-valorica",
+    "cv-internacionales",
+    "diversidad",
+    "zona-alumnos",
+    "herramientas-vida-escolar",
+    "talleres",
+    "deportes",
+    "reglamento",
+    "sedes",
+    "noticias",
+    "comunidad",
   ];
 
-  const nuestroAdnImage = document.querySelector(
-    ".nuestro-adn-image > .wpb_wrapper > .vc_single_image-wrapper > img"
-  );
+  const nuestroAdnImage = document.querySelector("#main-image-menu");
+  const megaMenuListBackgroundImage = document.querySelector("#mega-menu-list");
 
-  menuItems.forEach(({ menuItem, submenu }) => {
-    menuItem.addEventListener("click", () => {
-      // // Close all submenus
-      // menuItems.forEach((item) => {
-      //   if (item.submenu) {
-      //     item.submenu.classList.remove("active");
-      //   }
-      // });
+  const itemImageMap = {
+    "nuestro-adn": "images/IMAGEN 1 DE LA PANTALLA 1.webp",
+    "la-vida-en-lintac": "images/IMAGEN 2 PANTALLA 2.webp",
+    "proyecto-educativo": "images/IMAGEN 2 PANTALLA 2.webp",
+    "formacion-valorica": "images/IMAGEN 3 PANTALLA 3.webp",
+    "cv-internacionales": "images/IMAGEN 4 PANTALLA 4.webp",
+    diversidad: "images/IMAGEN 5 PANTALLA 5.webp",
+    "zona-alumnos": "images/IMAGEN 6 DE LA PANTALLA 6.webp",
+    "herramientas-vida-escolar": "images/IMAGEN 6 DE LA PANTALLA 6.webp",
+    talleres: "images/IMAGEN 7 DE LA PANTALLA 7.webp",
+    deportes: "images/IMAGEN 8 DE LA PANTALLA 8.webp",
+    reglamento: "images/IMAGEN 9 DE LA PANTALLA 9.webp",
+    sedes: "images/IMAGEN 10 DE LA PANTALLA 10.webp",
+    noticias: "images/IMAGEN 11 DE LA PANTALLA 11.webp",
+    comunidad: "images/IMAGEN 12 DE LA PANTALLA 12.webp",
+  };
 
-      // Toggle active class for the clicked item
-      menuItem.classList.toggle("activeClass");
+  const backgroundImageMap = {
+    "nuestro-adn": "images/IMAGEN FONDO PANTALLA 1.webp",
+    "la-vida-en-lintac": "images/IMAGEN FONDO PANTALLA 1.webp",
+    "proyecto-educativo": "images/IMAGEN FONDO PANTALLA 1.webp",
+    "formacion-valorica": "images/IMAGEN FONDO PANTALLA 1.webp",
+    "cv-internacionales": "images/IMAGEN FONDO PANTALLA 4.webp",
+    diversidad: "images/IMAGEN FONDO PANTALLA 5.webp",
+    "zona-alumnos": "images/IMAGEN FONDO PANTALLA 5.webp",
+    "herramientas-vida-escolar": "images/IMAGEN FONDO PANTALLA 1.webp",
+    talleres: "images/IMAGEN FONDO PANTALLA 7.webp",
+    deportes: "images/IMAGEN FONDO PANTALLA 8.webp",
+    reglamento: "images/IMAGEN FONDO PANTALLA 9.webp",
+    sedes: "images/IMAGEN FONDO PANTALLA 9.webp",
+    noticias: "images/IMAGEN FONDO PANTALLA 11.webp",
+    comunidad: "images/IMAGEN FONDO PANTALLA 12.webp",
+  };
 
-      // Toggle active class for the submenu (if exists)
-      if (submenu) {
-        submenu.classList.toggle("active");
+  function handleMenuItemHover(item) {
+    const imagePath =
+      itemImageMap[item] || "images/IMAGEN 1 DE LA PANTALLA 1.webp";
+    const backgroundImagePath =
+      backgroundImageMap[item] || "images/IMAGEN FONDO PANTALLA 1.webp";
+
+    nuestroAdnImage.src = imagePath;
+    nuestroAdnImage.animate(
+      [
+        { opacity: 0, transform: "translateX(-100%)", pointerEvents: "none" },
+        { opacity: 1, transform: "translateX(0)", pointerEvents: "auto" },
+      ],
+      {
+        duration: 500,
+        fill: "forwards",
+        easing: "ease-out",
       }
+    );
 
-      // Set the image source based on the clicked item
-      switch (menuItem.id) {
-        case "nuestro-adn":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-1-DE-LA-PANTALLA-1.webp";
-          break;
-        case "la-vida-en-lintac":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-2-PANTALLA-2.webp";
-          break;
-        case "proyecto-educativo":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-2-PANTALLA-2.webp";
-          break;
-        case "formacion-valorica":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-3-PANTALLA-3.webp";
-          break;
-        case "cv-internacionales":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-4-PANTALLA-4.webp";
-          break;
-        case "diversidad":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-5-PANTALLA-5.webp";
-          break;
-        case "zona-alumnos":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-6-DE-LA-PANTALLA-6.webp";
-          break;
-        case "herramientas-vida-escolar":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-6-DE-LA-PANTALLA-6.webp";
-          break;
-        case "talleres":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-7-DE-LA-PANTALLA-7.webp";
-          break;
-        case "deportes":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-8-DE-LA-PANTALLA-8.webp";
-          break;
-        case "reglamento":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-9-DE-LA-PANTALLA-9.webp";
-          break;
-        case "sedes":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-10-DE-LA-PANTALLA-10.webp";
-          break;
-        case "noticias":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-11-DE-LA-PANTALLA-11.webp";
-          break;
-        case "comunidad":
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-12-DE-LA-PANTALLA-12.webp";
-          break;
-        default:
-          // Set a default image if no specific case is matched
-          nuestroAdnImage.src = nuestroAdnImage.srcset =
-            "https://pruebas.jumpweb.cl/wp-content/uploads/2024/01/IMAGEN-1-DE-LA-PANTALLA-1.webp";
-      }
-    });
+    megaMenuListBackgroundImage.style.backgroundImage = `url('${backgroundImagePath}')`;
+
+    const menuItem = document.querySelector(`#${item}`);
+    menuItem.classList.add("activeClass");
+  }
+
+  function handleMenuItemHoverEnd(item) {
+    const menuItem = document.querySelector(`#${item}`);
+    menuItem.classList.remove("activeClass");
+  }
+
+  menuItems.forEach((item) => {
+    const menuItem = document.querySelector(`#${item}`);
+    menuItem.addEventListener("mouseenter", () => handleMenuItemHover(item));
+    menuItem.addEventListener("mouseleave", () => handleMenuItemHoverEnd(item));
   });
 });
