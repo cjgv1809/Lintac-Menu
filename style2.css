@@ -4,8 +4,7 @@
   box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
   min-height: 100vh;
   background: #fff;
   font-family: "Arial", sans-serif;
@@ -27,10 +26,7 @@ nav.mega-menu {
 
 .mega-menu-list {
   position: relative;
-  background-image: url("images/IMAGEN\ FONDO\ PANTALLA\ 1.webp");
-  background-repeat: no-repeat;
-  background-position: bottom right;
-  background-size: contain;
+  background: url("images/IMAGEN FONDO PANTALLA 1.webp") no-repeat bottom right / contain;
 }
 
 .mega-menu-container {
@@ -47,22 +43,17 @@ nav.mega-menu {
   list-style: none;
 }
 
-.first-level-submenu,
-.second-level-submenu,
-.third-level-submenu {
+.submenu {
   opacity: 0;
   position: absolute;
   top: 0;
   left: 100%;
   height: auto;
   width: 320px;
-  /* background-color: rebeccapurple; */
   visibility: visible;
 }
 
-.first-level-submenu > li,
-.second-level-submenu > li,
-.third-level-submenu > li {
+.submenu > li {
   padding: 0.625rem 1.25rem;
 }
 
@@ -114,13 +105,43 @@ nav.mega-menu {
 #herramientas-vida-escolar > a::after,
 #deportes > a::after {
   content: "";
-  background-image: url("images/icons8-double-right-96.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: url("images/icons8-double-right-96.png") no-repeat bottom / contain;
   padding-left: 20px;
 }
 
 .mega-menu-container .menu-item.first-level-item.activeClass > a {
   color: #4c4daa;
+}
+
+.mega-menu-container .menu-item.first-level-item::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 5px;
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+#nuestro-adn::before {
+  border-left: 30px solid #f9b233;
+}
+
+#la-vida-en-lintac::before {
+  border-left: 30px solid #e30613;
+}
+
+#zona-alumnos::before {
+  border-left: 30px solid #369ed9;
+}
+
+#comunidad::before {
+  border-left: 30px solid #1e9a5c;
+}
+
+.mega-menu-container .menu-item.first-level-item.activeClass::before {
+  opacity: 1;
 }
